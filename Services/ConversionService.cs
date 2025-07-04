@@ -10,5 +10,11 @@ namespace Unit_Converter_Application.Services
 
         public double ConvertWeight(double value, WeightUnit from, WeightUnit to)
             => WeightConverter.Convert(value, from, to);
+        
+        public double ConvertTemperature(double value, TemperatureUnit from, TemperatureUnit to)
+            => TemperatureConverter.Convert(value, from, to);
+
+        public double ConvertVolume(double value, VolumeUnit from, VolumeUnit to)
+            => VolumeConverter.Convert(value, from, to);
     }
 }

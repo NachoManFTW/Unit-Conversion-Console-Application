@@ -23,14 +23,14 @@ namespace Unit_Converter_Application.Converters
         // Converts amount of kilograms to every other type of weight measurement
         public static double Convert(double value, WeightUnit from, WeightUnit to)
         {
-            // Error handling if key in ToMeters dictionary is not found
+            // Error handling if key in ToKilograms dictionary is not found
             if (!ToKilogram.TryGetValue(from, out var fromFactor))
                 throw new ArgumentException("Unsupported source unit", nameof(from));
             if (!ToKilogram.TryGetValue(to, out var toFactor))
                 throw new ArgumentException("Unsupported target unit", nameof(to));
 
-            double valueInMeters = value * fromFactor;
-            return valueInMeters / toFactor;
+            double valueInKilograms = value * fromFactor;
+            return valueInKilograms / toFactor;
 
 
         }

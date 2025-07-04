@@ -8,17 +8,16 @@ namespace Unit_Converter_Application.Converters
     {
         //Ratios of 1 meter to all other length measurements
         private static readonly Dictionary<LengthUnit, double> ToMeters = new()
-    {
-        { LengthUnit.Meters, 1.0 },
-        { LengthUnit.Feet, 0.3048 },
-        { LengthUnit.Inches, 0.0254 },
-        { LengthUnit.Miles, 1609.34 }
-
-    };
-
+        {
+            { LengthUnit.Meters, 1.0 },
+            { LengthUnit.Feet, 0.3048 },
+            { LengthUnit.Inches, 0.0254 },
+            { LengthUnit.Miles, 1609.34 }
+        };
 
 
-        // Converts amount of meters to every other type of legnth measurement
+
+        // Converts amount of meters to every other type of length measurement
         public static double Convert(double value, LengthUnit from, LengthUnit to)
         {
             // Error handling if key in ToMeters dictionary is not found

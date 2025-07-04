@@ -10,9 +10,15 @@ namespace Unit_Converter_Application
     {
         private static void Main(string[] args)
         {
-            Explanation();
-            string choice = InitialMenu();
-            UserChoiceInput(choice);
+            bool repeat = true;
+            do
+            {
+                Explanation();
+                string choice = InitialMenu();
+                UserChoiceInput(choice);
+                repeat = ProgramRepeat();
+            } while (repeat);
+
         }
 
 
@@ -38,8 +44,7 @@ namespace Unit_Converter_Application
 
             Console.Clear();
         }
-
-
+        
         // Initial Menu for the User to choose what measurement they would like to covert
         static string InitialMenu()
         {
@@ -111,6 +116,7 @@ namespace Unit_Converter_Application
                         $"=> {result:F2} {GetEnumValue(convertTo, typeof(LengthUnit))}" 
                         );
                     break;
+                
                 case "1": //Weight
                     ListItems(typeof(WeightUnit));
                     convertFrom = UserSelectUnits(1);
@@ -126,21 +132,56 @@ namespace Unit_Converter_Application
                         $"=> {result:F2} {GetEnumValue(convertTo, typeof(WeightUnit))}"
                         );
                     break;
+                
                 case "2": //Temperature
                     ListItems(typeof(TemperatureUnit));
                     convertFrom = UserSelectUnits(1);
                     convertTo = UserSelectUnits(2);
                     value = UserInputValue();
+                    result = helper.ConvertTemperature(
+                        value,
+                        ConvertChoiceToUnitsTemperature(convertFrom, typeof(TemperatureUnit)),
+                        ConvertChoiceToUnitsTemperature(convertTo, typeof(TemperatureUnit))
+                    );
+                    Console.WriteLine(
+                        $"{value:F2} {GetEnumValue(convertFrom, typeof(TemperatureUnit))} " +
+                        $"=> {result:F2} {GetEnumValue(convertTo, typeof(TemperatureUnit))}"
+                        );
                     break;
+                
                 case "3": //Volume
                     ListItems(typeof(VolumeUnit));
                     convertFrom = UserSelectUnits(1);
                     convertTo = UserSelectUnits(2);
                     value = UserInputValue();
+                    result = helper.ConvertVolume(
+                        value,
+                        ConvertChoiceToUnitsVolume(convertFrom, typeof(TemperatureUnit)),
+                        ConvertChoiceToUnitsVolume(convertTo, typeof(VolumeUnit))
+                    );
+                    Console.WriteLine(
+                        $"{value:F2} {GetEnumValue(convertFrom, typeof(VolumeUnit))} " +
+                        $"=>  {result:F2} {GetEnumValue(convertTo, typeof(VolumeUnit))}"
+                        );
                     break;
             }
         }
 
+        //Outputs bool of if the user wants to repeat the program
+        static bool ProgramRepeat()
+        {
+            string repeat;
+            do
+            {
+                Console.Write("Would you like to enter a new conversion?(Y/N): ");
+                repeat = Console.ReadLine();
+                if (repeat == "Y" || repeat == "y")
+                    return true;
+                else if (repeat == "n" || repeat == "n")
+                    return false;
+            } while (true);
+        }
+        
         static void UserInputValidation()
         {
 
@@ -203,10 +244,23 @@ namespace Unit_Converter_Application
             return (LengthUnit)Enum.GetValues(enumType).GetValue(Convert.ToInt32(choice) - 1);
         }
 
+
         //Used to return enum of type weight unit
         static WeightUnit ConvertChoiceToUnitsWeight(string choice, Type enumType)
         {
             return (WeightUnit)Enum.GetValues(enumType).GetValue(Convert.ToInt32(choice) - 1);
+        }
+        
+        //Used to return enum of type temperature
+        static TemperatureUnit ConvertChoiceToUnitsTemperature(string choice, Type enumType)
+        {
+            return (TemperatureUnit)Enum.GetValues(enumType).GetValue(Convert.ToInt32(choice) - 1);
+        }
+        
+        //Used to return enum of type volume
+        static VolumeUnit ConvertChoiceToUnitsVolume(string choice, Type enumType)
+        {
+            return (VolumeUnit)Enum.GetValues(enumType).GetValue(Convert.ToInt32(choice) - 1);
         }
         
         // Return the value from the given convert selection

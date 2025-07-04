@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace Unit_Converter_Application.Models
@@ -41,6 +42,15 @@ namespace Unit_Converter_Application.Models
 
     public enum VolumeUnit
     {
-        
+        [Display(Name = "Cubic Feet")]
+        CubicFeet,
+        [Display(Name = "Cubic Yard")]
+        CubicYard,
+        [Display(Name = "Cubic Inch")]
+        CubicInch,
+        [Display(Name = "Cubic Centimeter")]
+        CubicCentimeter,
+        [Display(Name = "Cubic Meter")]
+        CubicMeter,
     }
 }
