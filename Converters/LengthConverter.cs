@@ -6,6 +6,7 @@ namespace Unit_Converter_Application.Converters
 {
     public static class LengthConverter
     {
+        //Ratios of 1 meter to all other length measurements
         private static readonly Dictionary<LengthUnit, double> ToMeters = new()
     {
         { LengthUnit.Meters, 1.0 },

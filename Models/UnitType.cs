@@ -38,4 +38,9 @@ namespace Unit_Converter_Application.Models
         Fahrenheit,
         Kelvin
     }
+
+    public enum VolumeUnit
+    {
+        
+    }
 }
