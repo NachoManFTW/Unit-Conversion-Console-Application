@@ -12,11 +12,14 @@ namespace Unit_Converter_Application.Converters
             { LengthUnit.Meters, 1.0 },
             { LengthUnit.Feet, 0.3048 },
             { LengthUnit.Inches, 0.0254 },
-            { LengthUnit.Miles, 1609.34 }
+            { LengthUnit.Miles, 1609.34 },
+            { LengthUnit.Milimeters, 0.001},
+            { LengthUnit.Centimeters, 0.01 },
+            { LengthUnit.Yards, 0.9144 }
         };
 
 
-
+ 
         // Converts amount of meters to every other type of length measurement
         public static double Convert(double value, LengthUnit from, LengthUnit to)
         {

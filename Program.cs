@@ -3,6 +3,7 @@ using System.Xml.Serialization;
 using Microsoft.VisualBasic;
 using Unit_Converter_Application.Models;
 using Unit_Converter_Application.Services;
+using Unit_Converter_Application.Utilities;
 
 namespace Unit_Converter_Application
 {
@@ -189,11 +190,12 @@ namespace Unit_Converter_Application
 
         static void ListItems(Type enumType)
         {
+            var helper = new EnumExtension();
             Console.WriteLine("Please select on of the following measurements to convert by the corresponding number:");
             int i = 1;
-            foreach (var item in Enum.GetValues(enumType))
+            foreach (Enum item in Enum.GetValues(enumType))
             {
-                Console.WriteLine(i + ". " + item);
+                Console.WriteLine(i + ". " + helper.GetDisplayName(item));
                 i++;
             }
         }
